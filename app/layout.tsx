@@ -7,7 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "ijul's playground",
   description: "join me n friends to play :3",
-  generator: "v0.dev",
+  icons: {
+    icon: "./playijul.svg",
+  },
 };
 
 export default function RootLayout({

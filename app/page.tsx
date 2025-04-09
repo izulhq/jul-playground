@@ -34,7 +34,7 @@ const games = [
     description:
       "Explore, build and fight in our Terraria server with custom mods and events.",
     icon: "./terraria.png",
-    serverIp: "coming soon!",
+    serverIp: "inactive",
     bgColor: "from-[#f5f5f5] to-[#2D2635]",
     image: "/terraria-bg.png",
     version: "coming soon",

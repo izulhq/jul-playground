@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="py-8 px-4 z-10">
       <div className="container mx-auto text-center">
-        <a className="text-gray-400 transition-colors duration-300">
+        <p className="text-gray-400 transition-colors duration-300">
           © {new Date().getFullYear()} ijul's game servers - part of
           <a
             className="text-gray-400 hover:text-gray-800 font-semibold transition-colors duration-300"
@@ -12,7 +12,7 @@ export function Footer() {
             {" "}
             ijul's cooking lab
           </a>
-        </a>
+        </p>
       </div>
     </footer>
   );

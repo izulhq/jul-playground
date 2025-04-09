@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Copy, Check, X } from "lucide-react";
@@ -69,7 +68,11 @@ export function GameCard({
               {game.name} server
             </h2>
             <div className="bg-black/70 rounded px-3 py-1 inline-block">
-              <code className="text-md font-mono text-[#9cdcfe]">
+              <code
+                className={`text-xl font-mono text-[#9cdcfe] ${
+                  game.serverIp === "inactive" ? "line-through" : ""
+                }`}
+              >
                 {game.serverIp}
               </code>
             </div>
