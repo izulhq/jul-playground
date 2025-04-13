@@ -27,21 +27,27 @@ export function GameCard({
     <div
       key={game.id}
       className={`transition-all duration-500 ease-in-out ${
-        expandedGame === game.id ? "w-[640px]" : "w-[320px]"
+        expandedGame === game.id
+          ? "md:w-[640px] w-[330px]" // Full width on mobile, double width on desktop
+          : "w-[330px]"
       }`}
     >
       <Card
         className={`bg-white backdrop-blur-sm shadow-md border border-black/10 hover:border-black/50 hover:shadow-none transition-all overflow-hidden flex flex-col ${
           hoveredGame ? "bg-white/50" : "bg-white"
-        } ${expandedGame === game.id ? "h-[320px] flex-row" : "h-[320px]"}`}
+        } ${
+          expandedGame === game.id
+            ? "md:h-[330px] md:flex-row" // Horizontal on desktop (md and up)
+            : "h-[330px]"
+        }`}
         onMouseEnter={() => !expandedGame && onHover(game.id)}
         onMouseLeave={() => !expandedGame && onHover(null)}
       >
         {/* Main card content */}
         <div
-          className={`flex flex-col ${
+          className={`${
             expandedGame === game.id
-              ? "w-[320px] flex-shrink-0"
+              ? "md:w-[330px] md:flex-shrink-0 w-full" // Fixed width on desktop, full width on mobile
               : "w-full h-full"
           }`}
         >
@@ -64,9 +70,7 @@ export function GameCard({
 
           {/* Middle 1/3: Server Name and IP */}
           <div className="flex flex-col items-center justify-center text-center px-6 h-1/3">
-            <h2 className="text-2xl font-bold text-black mb-2">
-              {game.name} server
-            </h2>
+            <h2 className="text-2xl font-bold text-black mb-2">{game.name}</h2>
             <div className="bg-black/70 rounded px-3 py-1 inline-block">
               <code
                 className={`text-xl font-mono text-[#9cdcfe] ${
@@ -76,6 +80,12 @@ export function GameCard({
                 {game.serverIp}
               </code>
             </div>
+            <p className="text-sm text-gray-600 pt-2 inline-block text-nowrap">
+              version :{" "}
+              <span className="text-black inline-block text-nowrap">
+                {game.version}
+              </span>
+            </p>
           </div>
 
           {/* Bottom 1/3: Copy Button and Arrow Button */}
@@ -115,24 +125,35 @@ export function GameCard({
 
         {/* Expanded content */}
         {expandedGame === game.id && (
-          <div className="flex-1 p-6 overflow-y-auto w-[320px] justify-center items-center">
-            <div className="space-y-4 justify-center items-center">
-              <div>
+          <div className="pt-0 p-6 md:p-6 overflow-y-auto md:w-[330px] w-full justify-center items-center">
+            <div className="space-y-2 justify-center items-center">
+              {/* <div>
                 <h4 className="font-medium text-gray-900">
-                  Game Version :<br></br>
-                  <strong>{game.version}</strong>
+                  game version : <strong>{game.version}</strong>
                 </h4>
-              </div>
+              </div> */}
 
-              <div>
-                <h4 className="font-medium text-gray-900">Mod List :</h4>
-                <ul className="list-disc list-inside text-gray-900 ml-2 mt-2 space-y-1">
+              <div className="space-y-2 h-[100%]">
+                <h4 className="font-medium text-gray-900">mod list :</h4>
+                <ul className="list-disc list-inside text-gray-900 ml-2 space-y-1">
                   {game.mod.map((modName, index) => (
                     <li key={index} className="text-sm">
                       {modName}
                     </li>
                   ))}
                 </ul>
+                {game.serverIp !== "inactive" && (
+                  <>
+                    <div className="px-2 bg-blue-400 rounded-full inline-block text-sm">
+                      <span className="font-sm text-gray-900">
+                        whitelist active
+                      </span>
+                    </div>
+                    <div className="px-2 bg-blue-400 rounded-full ml-2 inline-block text-sm">
+                      <span className="font-sm text-gray-900">online 24/7</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

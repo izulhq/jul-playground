@@ -11,25 +11,50 @@ import { ComingSoonCard } from "@/components/ComingSoonCard";
 const games = [
   {
     id: "1",
-    name: "minecraft",
+    name: "minecraft java",
     description:
       "Join our community-driven Minecraft server with custom worlds and friendly players.",
     icon: "./minecraft.png",
     serverIp: "mc.izulhq.me",
     bgColor: "from-[#f5f5f5] to-[#2D3635]",
     image: "/mc-bg.jpg",
-    version: "Fabric 1.21.3",
+    version: "fabric 1.21.3",
     mod: [
-      "Direction HUD",
-      "Falling Tree",
-      "Husk Homes",
-      "Infinite Trading",
-      "Skin Restorer",
-      "Too Expensive Removed",
+      "armored elytra",
+      "direction HUD",
+      "falling tree",
+      "geyser",
+      "husk homes",
+      "infinite trading",
+      "skin restorer",
+      "too expensive removed",
+      "via version",
     ],
   },
   {
     id: "2",
+    name: "minecraft bedrock",
+    description:
+      "Explore, build and fight in our Terraria server with custom mods and events.",
+    icon: "./minecraft-bedrock.png",
+    serverIp: "mc.izulhq.me:19132",
+    bgColor: "from-[#f5f5f5] to-[#2D2635]",
+    image: "/mc-bedrock-bg.jpg",
+    version: "latest",
+    mod: [
+      "armored elytra",
+      "direction HUD",
+      "falling tree",
+      "geyser",
+      "husk homes",
+      "infinite trading",
+      "skin restorer",
+      "too expensive removed",
+      "via version",
+    ],
+  },
+  {
+    id: "3",
     name: "terraria",
     description:
       "Explore, build and fight in our Terraria server with custom mods and events.",
@@ -63,7 +88,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen h-[100vh] flex flex-col relative overflow-hidden">
+    <div className="min-h-screen flex flex-col relative overflow-y-auto">
       <Background
         games={games}
         hoveredGame={hoveredGame}
@@ -88,7 +113,37 @@ export default function Home() {
                 onCopy={copyToClipboard}
               />
             ))}
-            <ComingSoonCard />
+          </div>
+
+          {/* Coming soon section */}
+          <div className="mt-8 mb-8 text-center">
+            <div className="flex justify-center space-x-2 mb-3">
+              <div
+                className={`w-3 h-3 rounded-full animate-pulse transition-colors duration-300 ${
+                  hoveredGame || expandedGame ? "bg-white/90" : "bg-gray-600"
+                }`}
+                style={{ animationDuration: "1.5s" }}
+              ></div>
+              <div
+                className={`w-3 h-3 rounded-full animate-pulse transition-colors duration-300 ${
+                  hoveredGame || expandedGame ? "bg-white/90" : "bg-gray-600"
+                }`}
+                style={{ animationDuration: "1.5s", animationDelay: "0.5s" }}
+              ></div>
+              <div
+                className={`w-3 h-3 rounded-full animate-pulse transition-colors duration-300 ${
+                  hoveredGame || expandedGame ? "bg-white/90" : "bg-gray-600"
+                }`}
+                style={{ animationDuration: "1.5s", animationDelay: "1s" }}
+              ></div>
+            </div>
+            <p
+              className={`text-lg transition-colors duration-300 ${
+                hoveredGame || expandedGame ? "text-white/90" : "text-gray-600"
+              }`}
+            >
+              more game servers coming soon
+            </p>
           </div>
         </div>
       </main>
